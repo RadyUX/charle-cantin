@@ -12,18 +12,16 @@ collections:
     create: true
     slug: "{{slug}}"
     fields:
-      - {label: "Titre", name: "title", widget: "string"}
       - {label: "Image", name: "image", widget: "image"}
       - {label: "Catégorie", name: "category", widget: "string"}
 
   - name: "rates"
-    label: "Tarifs et Prestations"
+    label: "Tarifs"
     folder: "src/content/rates"
     create: true
     slug: "{{slug}}"
     fields:
       - {label: "Titre", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "text"}
       - {label: "Tarif", name: "price", widget: "number"}
 
   - name: "pages"
