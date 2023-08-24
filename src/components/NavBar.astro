@@ -1,0 +1,31 @@
+
+---
+import { Icon } from "astro-icon";
+const links = [
+    { url: '/', label: 'Accueil' },
+    { url: '/galerie', label: 'Galerie' },
+    { url: '/tarif', label: 'Tarifs' },
+    { url: '/contact', label: 'Contact' }
+];
+---
+
+<nav class="navbar py-4 flex justify-around ">
+    <ul class="flex space-x-6">
+        {links.map(link => (
+            <li>
+                <a href={link.url}>{link.label}</a>
+            </li>
+        ))}
+    </ul>
+
+    <ul class="flex space-x-4">
+      <Icon name='mdi:facebook'/>
+      <Icon name='mdi:instagram'/>
+    </ul>
+</nav>
+
+
+<style lang="css">
+    [astro-icon] {
+       height: 30px;
+    }
