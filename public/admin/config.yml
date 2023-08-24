@@ -22,21 +22,21 @@ collections:
     slug: "{{slug}}"
     fields:
       - {label: "Titre", name: "title", widget: "string"}
-      - {lanel: "Description", name: "description", widget: "string"}
+      - {label: "Description", name: "description", widget: "string"}  # Fixed a typo here: 'lanel' to 'label'
       - {label: "Tarif", name: "price", widget: "number"}
 
   - name: "pages"
-  label: "Pages"
-  files:
-    - name: "contact"
-      label: "Contact"
-      file: "src/content/pages/contact.md"
-      fields:
-        - {label: "Titre", name: "title", widget: "string"}
-        - {label: "Contenu", name: "body", widget: "markdown"}
+    label: "Pages"
+    files:
+      - name: "contact"
+        label: "Contact"
+        file: "src/content/pages/contact.md"
+        fields:
+          - {label: "Titre", name: "title", widget: "string"}
+          - {label: "Contenu", name: "body", widget: "markdown"}
 
-    - name: "homepage"
-      label: "Homepage"
-      file: "src/content/pages/homepage.md"
-      fields:
-        - {label: "Landing Page Image", name: "background_image", widget: "image"}
+      - name: "homepage"
+        label: "Homepage"
+        file: "src/content/pages/homepage.md"
+        fields:
+          - {label: "Landing Page Image", name: "background_image", widget: "image"}
