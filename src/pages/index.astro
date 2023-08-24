@@ -1,10 +1,14 @@
 ---
 import Layout from '../layouts/MainLayout.astro';
+import * as Landing from '../content/homepage.md'
 
 ---
 
+
+
+
 <Layout title="Charle Cantin">
-	<main class="flex items-center justify-center h-full landing">
+	<main class="flex items-center justify-center h-full landing " style={`background-image: url(${Landing.frontmatter.background_image};`}>
 		<div class="center">
 			<h1 class="text-6xl">Charle Cantin - Photographe</h1>
 		</div>
