@@ -17,6 +17,7 @@ body {
   background: linear-gradient(-45deg, #eee152, #e73cbc, #237cd5, #23bdd5);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
+  font-family: 'Lato';
 }
 
 @keyframes gradient {
@@ -31,6 +32,10 @@ body {
   }
 }
 
+.navbar{
+  background: #47555E;
+  color: white;
+}
 .landing{
 background-repeat: no-repeat;
 background-size: cover;

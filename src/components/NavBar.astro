@@ -1,6 +1,7 @@
 
 ---
 import { Icon } from "astro-icon";
+import logo from '../../public/logo.png'
 const links = [
     { url: '/', label: 'Accueil' },
     { url: '/galerie', label: 'Galerie' },
@@ -10,18 +11,24 @@ const links = [
 ---
 
 <nav class="navbar py-4 flex justify-around ">
-    <ul class="flex space-x-6">
+    <img src={logo} alt="" class="h-[70px] hidden lg:block ">
+    <ul class="space-x-6 py-5 hidden lg:flex">
         {links.map(link => (
             <li>
                 <a href={link.url}>{link.label}</a>
             </li>
         ))}
     </ul>
-
-    <ul class="flex space-x-4">
-      <Icon name='mdi:facebook'/>
-      <Icon name='mdi:instagram'/>
+   
+    <ul class="flex items-center space-x-6">
+        <Icon name='mdi:menu' class="lg:hidden"/>
+        
+        <div class="flex space-x-4 py-5 pl-6">
+            <Icon name='mdi:facebook'/>
+            <Icon name='mdi:instagram'/>
+        </div>
     </ul>
+    
 </nav>
 
 
