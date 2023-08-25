@@ -1,10 +1,10 @@
 ---
-const {title, price} = Astro.props
+const {title, price, description} = Astro.props
 ---
 
 
-<div class="card p-[20px] rounded bg-[#5E5047] w-[150px]">
-    <h2>{title}</h2>
-    <p>Prix: {price}€</p>
+<div class="tarif-card bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+		<h3 class="text-xl mb-4">{title}</h3>
+		<p>{description}</p>
+		<p class="text-indigo-500 text-2xl mt-4">{price}€</p>
 </div>
-
