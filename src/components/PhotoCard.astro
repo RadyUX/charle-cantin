@@ -1,0 +1,10 @@
+---
+
+const {image, category} = Astro.props
+
+---
+
+<div class="photocard p-4 w-full mb-4" data-category={category}>
+  <img src={image} alt={category} class="w-full h-full object-cover">
+
+</div>

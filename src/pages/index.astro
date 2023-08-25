@@ -1,6 +1,10 @@
 ---
 import Layout from '../layouts/MainLayout.astro';
 import * as Landing from '../content/pages/homepage.md'
+import Tarif from '../components/Tarif.astro';
+import PhotoCard from '../components/PhotoCard.astro';
+const tarifs = await Astro.glob("../content/rates/*.md")
+const categories = await Astro.glob("../content/gallery/*.md")
 
 ---
 
@@ -8,12 +12,76 @@ import * as Landing from '../content/pages/homepage.md'
 
 
 <Layout title="Charle Cantin">
-	<main class="flex items-center justify-center h-full landing " style={`background-image: url(${Landing.frontmatter.background_image};`}>
-		<div class="center">
-			<h1 class="text-6xl pb-4"><span class="font-bold text-[70px]">C</span>harle <span class="font-bold text-[70px]">C</span>antin - Photographe</h1>
+	<main class="flex-col ">
+		<header class=" h-screen landing flex justify-center items-center" style={`background-image: url(${Landing.frontmatter.background_image};`}>
+		
+			<h1 class="text-6xl pb-[100px]"><span class="font-bold text-[70px] color-[#5E5047]">C</span>harle <span class="font-bold text-[70px]">C</span>antin - Photographe</h1>
+		
+	   </header>
+
+	   <div class="gallerie" id="galerie">
+		<h1 class="text-6xl text-center mt-6"> Galerie</h1>
+		<select name="categories" id="categories" class="bg-white border rounded-md p-2 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm ">
+			{
+				categories.map(categorie => (
+					<option>{categorie.frontmatter.category}</option>
+				))
+			}
+		</select>
+		
+		<div class="grid grid-cols-3 px-6 mx-6" id="galery">
+			{
+				categories.length > 0 ? categories.map(categorie => (
+				  <PhotoCard image={categorie.frontmatter.image} category={categorie.frontmatter.category}/>
+				))
+				:
+				<div>
+					<h1>aucune photo</h1>
+				</div>
+			}
 		</div>
-    
+	</div>
+	
+	 
+	   </div>
+
+		<div class="tarif  text-white" id="tarif" class="flex">
+			<h1 class="text-6xl text-center">Tarifs et Prestation</h1>
+			<div class="flex space-x-4 gap-4 justify-center">
+				{
+					tarifs.map((tarif)=>{
+						return(
+							
+							<Tarif title={tarif.frontmatter.title}
+							price={tarif.frontmatter.price}></Tarif>
+						
+						)
+					})
+				}
+				</div>
+		</div>
+		
 	</main>
+	<script>
+		const select = document.getElementById('categories')
+		const galerie = document.getElementById('galery')
+
+		select.addEventListener('change', function(){
+			const selectedCategory = this.value
+			console.log(selectedCategory)
+			const photofiltered = galerie.querySelectorAll(".photocard")
+			photofiltered.forEach(photo =>{
+				if(photo.dataset.category !== selectedCategory){
+					photo.style.display = 'none'
+				} else {
+					photo.style.display = ''
+				}
+			})
+		})
+
+
+
+	</script>
 </Layout>
 
 
