@@ -22,7 +22,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - {label: "Titre", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "string"}  # Fixed a typo here: 'lanel' to 'label'
+      - {label: "Description", name: "description", widget: "string"}
       - {label: "Tarif", name: "price", widget: "number"}
 
   - name: "contact"
@@ -35,7 +35,7 @@ collections:
       - {label: "Adresse e-mail", name: "email", widget: "string"}
       - {label: "Adresse ", name: "address", widget: "string"}
 
-   - name: "homepage"
+  - name: "homepage"
     label: "Homepage"
     files:
       - name: "homepage-file"
