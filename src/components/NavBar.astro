@@ -10,29 +10,58 @@ const links = [
 ];
 ---
 
-<nav class="navbar  py-4 flex justify-around fixed w-full z-10">
-    <img src={logo} alt="" class="h-[70px] hidden lg:block ">
-    <ul class="space-x-6 py-5 hidden lg:flex">
+<nav class="navbar py-4 flex justify-between items-center fixed w-full z-10">
+    <div class="flex items-center">
+        <Icon name='mdi:menu' class="lg:hidden ml-[50px]" id="menuBtn"/> <!-- Ajouté ici et ajouté une marge à droite pour l'espacement -->
+        <img src={logo} alt="" class="h-[70px] hidden lg:block ml-[50px]">
+    </div>
+   <!--  menu burger -->
+<div class="md:hidden">
+    <ul class="flex flex-col space-y-2 py-5 absolute top-0 left-0 bg-[#5E5047]  rounded-md mt-16 w-56" id="menu">
         {links.map(link => (
             <li>
-                <a href={link.url}>{link.label}</a>
+                <a href={link.url} class="block px-4 py-2  transition duration-300">{link.label}</a>
             </li>
         ))}
     </ul>
+</div>
+<!--  navbar normale -->
+<ul class="space-x-6 py-5 hidden md:flex">
+    {links.map(link => (
+        <li>
+            <a href={link.url} class="px-4 py-2 hover:bg-indigo-500 hover:text-white rounded transition duration-300">{link.label}</a>
+        </li>
+    ))}
+</ul>
+
    
     <ul class="flex items-center space-x-6">
-        <Icon name='mdi:menu' class="lg:hidden"/>
-        
-        <div class="flex space-x-4 py-5 pl-6">
+        <div class="flex space-x-4 py-5 pl-6 mr-[100px]">
             <Icon name='mdi:facebook'/>
             <Icon name='mdi:instagram'/>
         </div>
     </ul>
-    
 </nav>
 
+<script>
+    const menuBtn= document.getElementById('menuBtn')
+    const menu = document.getElementById('menu')
+   
+    menuBtn.addEventListener('click', function() {
+    menu.classList.toggle('show');
+})
+    
+</script>
 
 <style lang="css">
     [astro-icon] {
        height: 30px;
     }
+    #menu{
+        display: none;
+    }
+
+    #menu.show{
+        display:flex;
+    }
+</style>

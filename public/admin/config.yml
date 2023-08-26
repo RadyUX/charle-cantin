@@ -25,16 +25,6 @@ collections:
       - {label: "Description", name: "description", widget: "string"}
       - {label: "Tarif", name: "price", widget: "number"}
 
-  - name: "contact"
-    label: "Contact"
-    folder: "src/content/contact"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Numéro de téléphone", name: "phone", widget: "string"}
-      - {label: "Adresse e-mail", name: "email", widget: "string"}
-      - {label: "Adresse ", name: "address", widget: "string"}
-
   - name: "homepage"
     label: "Homepage"
     files:
