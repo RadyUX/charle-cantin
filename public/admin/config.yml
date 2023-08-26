@@ -35,8 +35,11 @@ collections:
       - {label: "Adresse e-mail", name: "email", widget: "string"}
       - {label: "Adresse ", name: "address", widget: "string"}
 
-  - name: "homepage"
+   - name: "homepage"
     label: "Homepage"
-    file: "src/content/pages/homepage.md"
-    fields:
-      - {label: "Landing Page Image", name: "background_image", widget: "image"}
+    files:
+      - name: "homepage-file"
+        label: "Homepage File"
+        file: "src/content/pages/homepage.md"
+        fields:
+          - {label: "Landing Page Image", name: "background_image", widget: "image"}
