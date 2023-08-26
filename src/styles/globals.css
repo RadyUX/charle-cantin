@@ -47,6 +47,8 @@ h1 {
     animation: animation 1s forwards;  
 }
 
+
+
 @keyframes animation {
     0% {
         transform: translateY(50%);  
@@ -56,4 +58,14 @@ h1 {
         transform: translateY(0);  
         opacity: 1;
     }
+}
+.hide {
+  opacity: 0;
+  transform: translateY(50%);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
 }

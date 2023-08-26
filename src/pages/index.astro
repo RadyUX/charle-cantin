@@ -13,37 +13,41 @@ const categories = await Astro.glob("../content/gallery/*.md")
 
 <Layout title="Charle Cantin">
 	<main class="flex-col ">
+
+
 		<header class=" h-screen landing flex justify-center items-center" style={`background-image: url(${Landing.frontmatter.background_image};`}>
 		
 			<h1 class="text-6xl pb-[100px]"><span class="font-bold text-[70px] color-[#5E5047]">C</span>harle <span class="font-bold text-[70px]">C</span>antin - Photographe</h1>
 		
 	   </header>
 
-	   <section class="gallerie p-4 md:p-8 lg:p-12" id="galerie">
+
+
+	   <section class="gallerie p-4 md:p-8 lg:p-12 " id="galerie">
 		<h1 class="text-6xl text-center mb-8">Galerie</h1>
+			
+			<div class="mb-8 flex justify-center">
+				<select name="categories" id="categories" class=" w-[150px] bg-white border rounded-md p-2 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm">
+					<option selected>All</option>
+					{
+						categories.map(categorie => (
+							<option>{categorie.frontmatter.category}</option>
+						))
+					}
+				</select>
+			</div>
 		
-		<div class="mb-8 flex justify-center">
-			<select name="categories" id="categories" class=" w-[150px] bg-white border rounded-md p-2 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm">
-				<option>All</option>
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4 md:px-8 lg:px-0 hide " id="galery">
 				{
-					categories.map(categorie => (
-						<option>{categorie.frontmatter.category}</option>
+					categories.length > 0 ? categories.map(categorie => (
+						<PhotoCard image={categorie.frontmatter.image} category={categorie.frontmatter.category} />
 					))
+					:
+					<div class="col-span-full flex justify-center items-center h-60 bg-gray-200 rounded-md">
+						<h1 class="text-xl font-bold">Aucune photo</h1>
+					</div>
 				}
-			</select>
-		</div>
-	
-		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4 md:px-8 lg:px-0" id="galery">
-			{
-				categories.length > 0 ? categories.map(categorie => (
-					<PhotoCard image={categorie.frontmatter.image} category={categorie.frontmatter.category} />
-				))
-				:
-				<div class="col-span-full flex justify-center items-center h-60 bg-gray-200 rounded-md">
-					<h1 class="text-xl font-bold">Aucune photo</h1>
-				</div>
-			}
-		</div>
+			</div>
 	</section>
 	
 
@@ -52,25 +56,53 @@ const categories = await Astro.glob("../content/gallery/*.md")
 	 
 	   </div>
 
-	   <section class="tarif-section py-16  " id="tarif">
-		<div class="container mx-auto h-screen">
-			<h2 class="text-center text-6xl text-white  mb-8"> Tarifs et Prestations</h2>
+	   <section class="tarif-section py-16 " id="tarif">
+		<div class="container mx-auto h-screen flex flex-col justify-center items-center hide">
+			<h2 class="text-center text-6xl text-white mb-8 ">Tarifs et Prestations</h2>
 			<div class="grid md:grid-cols-3 gap-12">
 				{tarifs.map(tarif => (
-				
 					<Tarif title={tarif.frontmatter.title} description={tarif.frontmatter.description} price={tarif.frontmatter.price}/>
 				))}
 			</div>
 		</div>
 	</section>
 	
+
+	<section class="hide" id="contact">
+		<div class="container mx-auto h-screen">
+			<h2 class="text-center text-6xl text-white  mb-8"> Contact</h2>
+			
+			<form action="https://formspree.io/f/maygoage" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full lg:w-1/2 mx-auto">
+				<div class="mb-4">
+					<label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+						Your email:
+					</label>
+					<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" name="email" id="email" placeholder="Email" required>
+				</div>
+				<div class="mb-6">
+					<label class="block text-gray-700 text-sm font-bold mb-2" for="message">
+						Your message:
+					</label>
+					<textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-32 resize-none" name="message" id="message" placeholder="Write your message..." required></textarea>
+				</div>
+				<div class="flex items-center justify-between">
+					<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+						Send
+					</button>
+				</div>
+			</form>
+			
+	</section>
+	
 		
 	</main>
 	
 	<script>
+
+		//filtre category
 		const select = document.getElementById('categories')
 		const galerie = document.getElementById('galery')
-
+		
 		select.addEventListener('change', function(){
 			const selectedCategory = this.value
 			console.log(selectedCategory)
@@ -80,7 +112,6 @@ const categories = await Astro.glob("../content/gallery/*.md")
 				if (selectedCategory === 'All') {
 				photo.style.display = '';
 			} else {
-				// Sinon, on affiche seulement les photos qui correspondent à la catégorie sélectionnée
 				if (photo.dataset.category !== selectedCategory) {
 					photo.style.display = 'none';
 				} else {
@@ -89,8 +120,18 @@ const categories = await Astro.glob("../content/gallery/*.md")
 			})
 		})
 
-
-
+// animation
+		const observer = new IntersectionObserver((entries)=>{
+			entries.forEach((entry)=>{
+				if(entry.isIntersecting){
+					entry.target.classList.add('show')
+				} else {
+					entry.target.classList.remove('show')
+				}
+			})
+		})
+		const hiddenElements = document.querySelectorAll('.hide')
+		hiddenElements.forEach((el) => observer.observe(el))
 	</script>
 </Layout>
 
