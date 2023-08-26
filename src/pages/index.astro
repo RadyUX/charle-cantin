@@ -19,34 +19,41 @@ const categories = await Astro.glob("../content/gallery/*.md")
 		
 	   </header>
 
-	   <section class="gallerie " id="galerie">
-		<h1 class="text-6xl text-center mt-6"> Galerie</h1>
-		<select name="categories" id="categories" class="bg-white border rounded-md p-2 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm ">
-			{
-				categories.map(categorie => (
-					<option>{categorie.frontmatter.category}</option>
-				))
-			}
-		</select>
+	   <section class="gallerie p-4 md:p-8 lg:p-12" id="galerie">
+		<h1 class="text-6xl text-center mb-8">Galerie</h1>
 		
-		<div class="grid grid-cols-3 px-6 mx-6" id="galery">
+		<div class="mb-8 flex justify-center">
+			<select name="categories" id="categories" class=" w-[150px] bg-white border rounded-md p-2 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm">
+				<option>All</option>
+				{
+					categories.map(categorie => (
+						<option>{categorie.frontmatter.category}</option>
+					))
+				}
+			</select>
+		</div>
+	
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4 md:px-8 lg:px-0" id="galery">
 			{
 				categories.length > 0 ? categories.map(categorie => (
-				  <PhotoCard image={categorie.frontmatter.image} category={categorie.frontmatter.category}/>
+					<PhotoCard image={categorie.frontmatter.image} category={categorie.frontmatter.category} />
 				))
 				:
-				<div>
-					<h1>aucune photo</h1>
+				<div class="col-span-full flex justify-center items-center h-60 bg-gray-200 rounded-md">
+					<h1 class="text-xl font-bold">Aucune photo</h1>
 				</div>
 			}
 		</div>
 	</section>
 	
+
+	
+	
 	 
 	   </div>
 
-	   <section class="tarif-section py-16 " id="tarif">
-		<div class="container mx-auto">
+	   <section class="tarif-section py-16  " id="tarif">
+		<div class="container mx-auto h-screen">
 			<h2 class="text-center text-6xl text-white  mb-8"> Tarifs et Prestations</h2>
 			<div class="grid md:grid-cols-3 gap-12">
 				{tarifs.map(tarif => (
@@ -59,6 +66,7 @@ const categories = await Astro.glob("../content/gallery/*.md")
 	
 		
 	</main>
+	
 	<script>
 		const select = document.getElementById('categories')
 		const galerie = document.getElementById('galery')
@@ -68,11 +76,16 @@ const categories = await Astro.glob("../content/gallery/*.md")
 			console.log(selectedCategory)
 			const photofiltered = galerie.querySelectorAll(".photocard")
 			photofiltered.forEach(photo =>{
-				if(photo.dataset.category !== selectedCategory){
-					photo.style.display = 'none'
+				
+				if (selectedCategory === 'All') {
+				photo.style.display = '';
+			} else {
+				// Sinon, on affiche seulement les photos qui correspondent à la catégorie sélectionnée
+				if (photo.dataset.category !== selectedCategory) {
+					photo.style.display = 'none';
 				} else {
-					photo.style.display = ''
-				}
+					photo.style.display = '';
+				}}
 			})
 		})
 
