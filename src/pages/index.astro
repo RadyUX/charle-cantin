@@ -17,7 +17,7 @@ const categories = await Astro.glob("../content/gallery/*.md")
 
 
 
-		<header class=" h-screen landing flex justify-center items-center" style={`background-image: url(${Landing.frontmatter.background_image};`} id="home">
+		<header class=" h-screen w-screen landing flex justify-center items-center" style={`background-image: url(${Landing.frontmatter.background_image};`} id="home">
 		
 			<h1 class="lg:text-6xl text-4xl text-center lg:pb-[100px]"><span class=" font-bold text-[#5E5047]">C</span>harle <span class="text-[#5E5047] font-bold">C</span>antin - Photographe</h1>
 		
@@ -39,7 +39,7 @@ const categories = await Astro.glob("../content/gallery/*.md")
 				</select>
 			</div>
 		
-			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4 md:px-8 lg:px-0 hide " id="galery">
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4 md:px-8 lg:px-0 " id="galery">
 				{
 					categories.length > 0 ? categories.map(categorie => (
 						<PhotoCard image={categorie.frontmatter.image} category={categorie.frontmatter.category} />
@@ -59,7 +59,7 @@ const categories = await Astro.glob("../content/gallery/*.md")
 	   </div>
 
 	   <section class="tarif-section py-16 " id="tarif">
-		<div class="container md:mx-auto h-full mx-2 lg:h-screen flex flex-col justify-center items-center hide">
+		<div class="container md:mx-auto h-full  lg:h-screen flex flex-col justify-center items-center hide">
 			<h2 class="text-center text-6xl text-white mb-8 ">Tarifs et Prestations</h2>
 			<div class="grid w-[300px] md:w-full md:grid-cols-3 gap-12">
 				{tarifs.map(tarif => (
