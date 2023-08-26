@@ -3,6 +3,7 @@ import Layout from '../layouts/MainLayout.astro';
 import * as Landing from '../content/pages/homepage.md'
 import Tarif from '../components/Tarif.astro';
 import PhotoCard from '../components/PhotoCard.astro';
+import Footer from '../components/Footer.astro';
 const tarifs = await Astro.glob("../content/rates/*.md")
 const categories = await Astro.glob("../content/gallery/*.md")
 
@@ -15,9 +16,10 @@ const categories = await Astro.glob("../content/gallery/*.md")
 	<main class="flex-col ">
 
 
-		<header class=" h-screen landing flex justify-center items-center" style={`background-image: url(${Landing.frontmatter.background_image};`}>
+
+		<header class=" h-screen landing flex justify-center items-center" style={`background-image: url(${Landing.frontmatter.background_image};`} id="home">
 		
-			<h1 class="text-6xl pb-[100px]"><span class="font-bold text-[70px] color-[#5E5047]">C</span>harle <span class="font-bold text-[70px]">C</span>antin - Photographe</h1>
+			<h1 class="lg:text-6xl text-4xl text-center lg:pb-[100px]"><span class=" font-bold text-[#5E5047]">C</span>harle <span class="text-[#5E5047] font-bold">C</span>antin - Photographe</h1>
 		
 	   </header>
 
@@ -37,7 +39,7 @@ const categories = await Astro.glob("../content/gallery/*.md")
 				</select>
 			</div>
 		
-			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4 md:px-8 lg:px-0 hide " id="galery">
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4 md:px-8 lg:px-0 sm:hide " id="galery">
 				{
 					categories.length > 0 ? categories.map(categorie => (
 						<PhotoCard image={categorie.frontmatter.image} category={categorie.frontmatter.category} />
@@ -57,9 +59,9 @@ const categories = await Astro.glob("../content/gallery/*.md")
 	   </div>
 
 	   <section class="tarif-section py-16 " id="tarif">
-		<div class="container mx-auto h-screen flex flex-col justify-center items-center hide">
+		<div class="container md:mx-auto h-full mx-2 lg:h-screen flex flex-col justify-center items-center md:hide">
 			<h2 class="text-center text-6xl text-white mb-8 ">Tarifs et Prestations</h2>
-			<div class="grid md:grid-cols-3 gap-12">
+			<div class="grid w-[300px] md:w-full md:grid-cols-3 gap-12">
 				{tarifs.map(tarif => (
 					<Tarif title={tarif.frontmatter.title} description={tarif.frontmatter.description} price={tarif.frontmatter.price}/>
 				))}
@@ -68,8 +70,8 @@ const categories = await Astro.glob("../content/gallery/*.md")
 	</section>
 	
 
-	<section class="hide" id="contact">
-		<div class="container mx-auto h-screen">
+	<section id="contact">
+		<div class="container mx-auto h-full lg:h-screen hide">
 			<h2 class="text-center text-6xl text-white  mb-8"> Contact</h2>
 			
 			<form action="https://formspree.io/f/maygoage" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full lg:w-1/2 mx-auto">
@@ -93,9 +95,11 @@ const categories = await Astro.glob("../content/gallery/*.md")
 			</form>
 			
 	</section>
-	
 		
+
 	</main>
+  <Footer/>
+
 	
 	<script>
 

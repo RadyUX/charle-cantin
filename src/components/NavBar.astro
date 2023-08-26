@@ -3,14 +3,14 @@
 import { Icon } from "astro-icon";
 import logo from '../../public/logo.png'
 const links = [
-    { url: '/', label: 'Accueil' },
+    { url: '#home', label: 'Accueil' },
     { url: '#galerie', label: 'Galerie' },
     { url: '#tarif', label: 'Tarifs' },
     { url: '#contact', label: 'Contact' }
 ];
 ---
 
-<nav class="navbar py-4 flex justify-around fixed w-full z-10">
+<nav class="navbar  py-4 flex justify-around fixed w-full z-10">
     <img src={logo} alt="" class="h-[70px] hidden lg:block ">
     <ul class="space-x-6 py-5 hidden lg:flex">
         {links.map(link => (

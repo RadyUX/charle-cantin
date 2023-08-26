@@ -1,0 +1,18 @@
+---
+
+import logo from '../../public/logo.png'
+const contact = await Astro.glob("../content/contact/*.md")
+---
+
+
+<footer class=" bg-[#5E5047] text-white py-8">
+    <div class="container mx-auto text-center">
+        <img src={logo} alt="Company Logo" class="mb-4 h-16 mx-auto" />
+
+       
+
+        <div class="mt-4">
+            <p class="text-sm">© {new Date().getFullYear()} All rights reserved.</p>
+        </div>
+    </div>
+</footer>
