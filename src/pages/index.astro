@@ -26,7 +26,7 @@ const categories = await Astro.glob("../content/gallery/*.md")
 
 
 	   <section class="gallerie p-4 md:p-8 lg:p-12 " id="galerie">
-		<h1 class="text-6xl text-center mb-8">Galerie</h1>
+		<h1 class="text-3xl md:text-6xl text-center m-8">Galerie</h1>
 			
 			<div class="mb-8 flex justify-center">
 				<select name="categories" id="categories" class=" w-[150px] bg-white border rounded-md p-2 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 shadow-sm">
@@ -60,7 +60,7 @@ const categories = await Astro.glob("../content/gallery/*.md")
 
 	   <section class="tarif-section py-16 " id="tarif">
 		<div class="container md:mx-auto h-full  lg:h-screen flex flex-col justify-center items-center hide">
-			<h2 class="text-center text-6xl text-white mb-8 ">Tarifs et Prestations</h2>
+			<h2 class="text-center text-3xl md:text-6xl text-white mb-8 ">Tarifs et Prestations</h2>
 			<div class="grid w-[300px] md:w-full md:grid-cols-3 gap-12">
 				{tarifs.map(tarif => (
 					<Tarif title={tarif.frontmatter.title} description={tarif.frontmatter.description} price={tarif.frontmatter.price}/>
@@ -72,7 +72,7 @@ const categories = await Astro.glob("../content/gallery/*.md")
 
 	<section id="contact">
 		<div class="container mx-auto h-full lg:h-screen hide">
-			<h2 class="text-center text-6xl text-white  mb-8"> Contact</h2>
+			<h2 class="text-center text-3xl md:text-6xl text-white  mb-8"> Contact</h2>
 			
 			<form action="https://formspree.io/f/maygoage" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full lg:w-1/2 mx-auto">
 				<div class="mb-4">
